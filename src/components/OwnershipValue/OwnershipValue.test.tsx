@@ -4,12 +4,14 @@ import OwnershipValue from '.';
 import { renderElement } from '../../__test__/utils';
 
 describe('<OwnershipValue />', () => {
+  const option = {
+    initialInvestment: { min: 0, max: 10000, default: 1500, step: 500 },
+    monthlyInvestment: { min: 0, max: 5000, default: 500, step: 500 },
+    yearsRenting: { min: 0, max: 10, default: 1, step: 1 }
+  };
+
   it('simple render', () => {
-    const queries = renderElement(<OwnershipValue baseRent={1000} option={{
-      initialInvestment: { min: 0, max: 10000, default: 1500 },
-      monthlyInvestment: { min: 0, max: 5000, default: 500 },
-      yearsRenting: { min: 0, max: 10, default: 1 }
-    }} />)
+    const queries = renderElement(<OwnershipValue baseRent={1000} option={option} />)
 
     queries.getByText('$1,000 rent');
     const inititalInvestmentValueBox = queries.getAllByTestId("valueBoxDiv")[0];
@@ -24,16 +26,13 @@ describe('<OwnershipValue />', () => {
   })
 
   it('change initial investment', () => {
-    const queries = renderElement(<OwnershipValue baseRent={1000} option={{
-      initialInvestment: { min: 0, max: 10000, default: 1500 },
-      monthlyInvestment: { min: 0, max: 5000, default: 500 },
-      yearsRenting: { min: 0, max: 10, default: 1 }
-    }} />)
+    const queries = renderElement(<OwnershipValue baseRent={1000} option={option} />);
 
     const inititalInvestmentSlider = queries.getAllByRole('slider')[0];
 
     // increase value
-    fireEvent.keyDown(inititalInvestmentSlider, { key: 'PageUp' });
+    fireEvent.keyDown(inititalInvestmentSlider, { key: 'ArrowUp' });
+    fireEvent.keyDown(inititalInvestmentSlider, { key: 'ArrowUp' });
     {
       const inititalInvestmentValueBox = queries.getAllByTestId("valueBoxDiv")[0];
       within(inititalInvestmentValueBox).getByText('$2,500');
@@ -42,7 +41,8 @@ describe('<OwnershipValue />', () => {
     }
 
     // decrease value
-    fireEvent.keyDown(inititalInvestmentSlider, { key: 'PageDown' });
+    fireEvent.keyDown(inititalInvestmentSlider, { key: 'ArrowDown' });
+    fireEvent.keyDown(inititalInvestmentSlider, { key: 'ArrowDown' });
     {
       const inititalInvestmentValueBox = queries.getAllByTestId("valueBoxDiv")[0];
       within(inititalInvestmentValueBox).getByText('$1,500');
@@ -53,16 +53,12 @@ describe('<OwnershipValue />', () => {
 
 
   it('change monthly investment', () => {
-    const queries = renderElement(<OwnershipValue baseRent={1000} option={{
-      initialInvestment: { min: 0, max: 10000, default: 1500 },
-      monthlyInvestment: { min: 0, max: 5000, default: 500 },
-      yearsRenting: { min: 0, max: 10, default: 1 }
-    }} />)
+    const queries = renderElement(<OwnershipValue baseRent={1000} option={option} />);
 
     const monthlyInvestmentSlider = queries.getAllByRole('slider')[1];
 
     // increase value
-    fireEvent.keyDown(monthlyInvestmentSlider, { key: 'PageUp' });
+    fireEvent.keyDown(monthlyInvestmentSlider, { key: 'ArrowUp' });
     {
       const monthlyInvestmentValueBox = queries.getAllByTestId("valueBoxDiv")[1];
       within(monthlyInvestmentValueBox).getByText('$1,000');
@@ -71,7 +67,7 @@ describe('<OwnershipValue />', () => {
     }
 
     // decrease value
-    fireEvent.keyDown(monthlyInvestmentSlider, { key: 'PageDown' });
+    fireEvent.keyDown(monthlyInvestmentSlider, { key: 'ArrowDown' });
     {
       const monthlyInvestmentValueBox = queries.getAllByTestId("valueBoxDiv")[1];
       within(monthlyInvestmentValueBox).getByText('$500');
@@ -81,16 +77,12 @@ describe('<OwnershipValue />', () => {
   })
 
   it('change year', () => {
-    const queries = renderElement(<OwnershipValue baseRent={1000} option={{
-      initialInvestment: { min: 0, max: 10000, default: 1500 },
-      monthlyInvestment: { min: 0, max: 5000, default: 500 },
-      yearsRenting: { min: 0, max: 10, default: 1 }
-    }} />)
+    const queries = renderElement(<OwnershipValue baseRent={1000} option={option} />);
 
     const yearsSlider = queries.getAllByRole('slider')[2];
 
     // increase value
-    fireEvent.keyDown(yearsSlider, { key: 'PageUp' });
+    fireEvent.keyDown(yearsSlider, { key: 'ArrowUp' });
     {
       const yearValueBox = queries.getAllByTestId("valueBoxDiv")[2];
       within(yearValueBox).getByText('2');
@@ -99,7 +91,7 @@ describe('<OwnershipValue />', () => {
     }
 
     // decrease value
-    fireEvent.keyDown(yearsSlider, { key: 'PageDown' });
+    fireEvent.keyDown(yearsSlider, { key: 'ArrowDown' });
     {
       const yearValueBox = queries.getAllByTestId("valueBoxDiv")[2];
       within(yearValueBox).getByText('1');

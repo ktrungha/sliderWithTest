@@ -8,9 +8,9 @@ const App: React.FC = () => {
       <Container>
         <div style={{ width: '510px' }}>
           <OwnershipValue baseRent={1000} option={{
-            initialInvestment: { min: 0, max: 10000, default: 1500 },
-            monthlyInvestment: { min: 0, max: 5000, default: 500 },
-            yearsRenting: { min: 0, max: 10, default: 1 }
+            initialInvestment: { min: 0, max: 10000, default: 1500, step: 500 },
+            monthlyInvestment: { min: 0, max: 5000, default: 500, step: 500 },
+            yearsRenting: { min: 0, max: 10, default: 1, step: 1 }
           }} />
         </div>
       </Container>

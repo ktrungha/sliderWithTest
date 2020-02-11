@@ -66,6 +66,7 @@ interface InitValues {
   min: number;
   max: number;
   default: number;
+  step: number;
 }
 
 interface Option {
@@ -121,6 +122,7 @@ const OwnershipValue: React.FC<Props> = (props) => {
           defaultValue={option.initialInvestment.default}
           min={option.initialInvestment.min}
           max={option.initialInvestment.max}
+          step={option.initialInvestment.step}
           onChangeCommitted={(e, value) => setInitialInvestment(value as number)} />
       </ValueBox>
       <ValueBox value={monthlyInvestment} label={
@@ -132,6 +134,7 @@ const OwnershipValue: React.FC<Props> = (props) => {
           defaultValue={option.monthlyInvestment.default}
           min={option.monthlyInvestment.min}
           max={option.monthlyInvestment.max}
+          step={option.monthlyInvestment.step}
           onChangeCommitted={(e, value) => setMonthlyInvestment(value as number)} />
       </ValueBox>
       <ValueBox
@@ -144,6 +147,7 @@ const OwnershipValue: React.FC<Props> = (props) => {
           defaultValue={option.yearsRenting.default}
           min={option.yearsRenting.min}
           max={option.yearsRenting.max}
+          step={option.yearsRenting.step}
           onChange={(e, value) => setYearsRenting(value as number)} />
       </ValueBox>
       <ValueBox
