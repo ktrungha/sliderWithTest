@@ -2,7 +2,7 @@ import { Typography } from '@material-ui/core';
 import Circle from '@material-ui/icons/FiberManualRecord';
 import React from 'react';
 import { FormattedNumber } from 'react-intl';
-import { GREY } from '../../colors';
+import { GREY, LIGHT_GREY } from '../../colors';
 
 interface Props {
   value: number;
@@ -23,7 +23,7 @@ const ValueBox: React.FC<Props> = (props) => {
     <div style={{ justifySelf: 'center' }} >
       {
         !finalBox &&
-        <div style={{ border: `1px solid ${GREY}`, height: '100%' }} />
+        <div style={{ border: `1px solid ${LIGHT_GREY}`, height: '100%' }} />
       }
     </div>
     <div style={{ padding: '0 20px' }}>
