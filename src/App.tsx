@@ -1,24 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Container from '@material-ui/core/Container'
+import OwnershipValue from './components/OwnershipValue';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ margin: '20px' }}>
+      <Container>
+        <div style={{ width: '510px' }}>
+          <OwnershipValue baseRent={1000} option={{
+            initialInvestment: { min: 0, max: 10000, default: 1500 },
+            monthlyInvestment: { min: 0, max: 5000, default: 500 },
+            yearsRenting: { min: 0, max: 10, default: 1 }
+          }} />
+        </div>
+      </Container>
     </div>
   );
 }

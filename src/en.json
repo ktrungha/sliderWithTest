@@ -1,0 +1,11 @@
+{
+  "monthlyPayment": "MONTHLY PAYMENT",
+  "securityDeposit": "SECURITY DEPOSIT",
+  "initialInvestment": "INITIAL INVESTMENT",
+  "monthlyInvestment": "MONTHLY INVESTMENT",
+  "yearsWU": "YEARS WITH UP&UP",
+  "ownershipValue": "OWNERSHIP VALUE",
+  "rent": "${value, number} rent",
+  "investment": "${value, number} investment",
+  "text": "Use your ${value, number} ownership stake as a down payment on any home, transfer it to your next upup rental, or cash out."
+}
