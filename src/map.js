@@ -44,6 +44,28 @@ function map(array, callback, option) {
   return Promise.all(array.map(one => pool.execute(callback, one)));
 };
 
+async function map2(array, callback, option) {
+  const { concurrency } = option;
+
+  const retval = new Array(array.length);
+
+  const workers = new Array(concurrency).fill(1);
+  await Promise.all(
+    workers.map(() => new Promise(async resolve => {
+      for(let i = 0; i < array.length; i += 1) {
+        if (retval[i] === undefined) {
+          retval[i] = null;
+          const result = await callback(array[i]);
+          retval[i] = result;
+        }
+      }
+      resolve();
+    }))
+  );
+
+  return retval;
+}
+
 const retval = map([1, 2, 3, 4, 5], async (val) => {
   let now = new Date();
   console.log('Start' + val + ' ' + now.getSeconds());
